@@ -5,7 +5,6 @@ I couldn't get any of the bot on GitHub to work on my machine so I created one u
 The bot functions based on coordinates of certain objects in game. During the raid, it will take a screenshot every 2 seconds to detect:
 
 1, if any familiars appear. If so, the bot will try to persuade them using gold
-
 2. if any member of the raid team dies, the bot will try to revive them using medium potions
 
 Assumtions:
@@ -16,5 +15,4 @@ Game must be in cinematic mode on kongregate website and scroll all the way up. 
 Requirements:
 
 1. Python installed with OpenCV, pyautogui, numpy, mss
-
 2. Run the run.py
