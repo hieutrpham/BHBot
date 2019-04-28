@@ -1,6 +1,6 @@
 from vision import Vision
 from control import Controller
-import log
+from log import log
 import numpy as np
 import time, pyautogui
 
@@ -35,6 +35,7 @@ class Raid:
             self.controller.click_revive()
             time.sleep(.5)
             self.controller.click_auto()
+            log('Revive successful.')
 
         else:
             log("Couldn't find dead member. Resume raiding.")
@@ -44,7 +45,7 @@ class Raid:
 
 
     def run(self):
-    """game logic inluding autorevive and auto persuade fams using gold"""
+        """game logic inluding autorevive and auto persuade fams using gold"""
 
         self.controller.click_raid()
         self.controller.click_summon()
@@ -60,7 +61,6 @@ class Raid:
             elif self.vision.found_cueAutoOff():
                 log('Someone dies. Attempt to revive.')
                 self.revive()
-                log('Revive successful.')
 
             elif self.vision.found_cueFam():
                 log('A familiar thinks you are cool. Attempt to persuade.')

@@ -2,7 +2,7 @@ import cv2, pyautogui, os
 from PIL import Image
 import numpy as np
 from mss import mss
-import log
+from log import log
 
 class Vision:
 
