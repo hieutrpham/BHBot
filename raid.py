@@ -19,7 +19,7 @@ class Raid:
 
     def revive(self):
         """revive character using medium potion"""
-        self.controller.click_potion()
+        self.controller.click_potion() 
         time.sleep(.5)
 
         #coordinates of 5 members where RIP tombstones would be
@@ -28,9 +28,11 @@ class Raid:
         for c in coordinates:
             # hover over each member's position to detect RIP
             pyautogui.moveTo(c[0],c[1],.5)
-            matches = self.vision.find_template('cueRIP')
+            img = self.vision.take_screenshot()
+            matches = self.vision.match_template(img, self.vision.templates['cueRIP'])
 
             if np.shape(matches)[1] >= 1:
+                log('Found a tombstone.')
 
                 x = matches[1][0] + 10
                 y = matches[0][0] + 10

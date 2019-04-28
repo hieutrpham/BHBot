@@ -30,8 +30,8 @@ def detect(filename, region):
         print('None')
 
 #def vision():
-img = cv2.imread(r'C:\Users\hieup\Documents\Python\Scripts\BHbotRaid\test\checkRIP1555854679.png', 0)
-template = cv2.imread(r'C:\Users\hieup\Documents\Python\Scripts\BHbotRaid\cues\cueRIP.png', 0)
+img = cv2.imread('checkRIP1555854679.png', 0)
+template = cv2.imread(r'C:\Users\hieup\Documents\GitHub\BHBot\cues\cueRIP.png', 0)
 w, h = template.shape[::-1]
 res = cv2.matchTemplate(img,template,cv2.TM_CCOEFF_NORMED)
 matches = np.where(res >= 0.9)
