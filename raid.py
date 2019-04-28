@@ -1,8 +1,8 @@
 from vision import Vision
 from control import Controller
-from lib_hp.utilities import log
+import log
 import numpy as np
-import time
+import time, pyautogui
 
 """
 All coordinates assume a screen resolution of 1920x1080, and Chrome
@@ -37,7 +37,7 @@ class Raid:
             self.controller.click_auto()
 
         else:
-            self.controller.mouse.press('escape')
+            pyautogui.press('escape')
             time.sleep(.5)
             self.controller.click_auto()
 

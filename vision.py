@@ -2,12 +2,12 @@ import cv2, pyautogui, os
 from PIL import Image
 import numpy as np
 from mss import mss
-from lib_hp.utilities import log
+import log
 
 class Vision:
 
     def __init__(self):
-        
+
         self.static_templates = {
             'cueCleared': os.getcwd() + r'\cues\cueCleared.png',
             'region_check': os.getcwd() + r'\cues\cueRegion.png',
@@ -41,7 +41,7 @@ class Vision:
         region = {'top': topRightX - 1000, 'left': topRightY, 'width': 1000, 'height': 651}
         return region
 
-    def take_screenshot(self): 
+    def take_screenshot(self):
         #take a screenshot of the game region and convert it to cv2 image
         sct_img = self.screen.grab(self.monitor)
         img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
@@ -55,7 +55,7 @@ class Vision:
 
     def bgr_to_rgb(self, img):
         b,g,r = cv2.split(img)
-        return cv2.merge([r,g,b]) 
+        return cv2.merge([r,g,b])
 
     def convert_rgb_to_bgr(self, img):
         return img[:, :, ::-1]
@@ -80,8 +80,7 @@ class Vision:
             threshold
         )
 
-# series of functions to help detect objects in game
-
+    # series of functions to help detect objects in game
     def found_cueCleared(self):
         matches = self.find_template('cueCleared')
         return np.shape(matches)[1] >= 1
