@@ -37,6 +37,7 @@ class Raid:
             self.controller.click_auto()
 
         else:
+            log("Couldn't find dead member. Resume raiding.")
             pyautogui.press('escape')
             time.sleep(.5)
             self.controller.click_auto()
@@ -57,9 +58,12 @@ class Raid:
                 break
 
             elif self.vision.found_cueAutoOff():
+                log('Someone dies. Attempt to revive.')
                 self.revive()
+                log('Revive successful.')
 
             elif self.vision.found_cueFam():
+                log('A familiar thinks you are cool. Attempt to persuade.')
                 self.controller.click_persuade()
 
             elif self.vision.found_cueChat():

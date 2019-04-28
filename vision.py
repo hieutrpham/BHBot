@@ -25,24 +25,8 @@ class Vision:
 
         self.frame = None
 
-    @staticmethod
-    def getGameRegion():
-        """Obtains the region of bit heroes. must be in guild hall to the top right of Quinn stable.
-        Restart the browser if can't find game"""
-
-        # identify the top-left Corner
-        cueRegion = pyautogui.locateOnScreen(os.getcwd() + r'\cues\cueRegion.png')
-        if cueRegion is None:
-            raise Exception('Could not find game on screen. Is the game visible?')
-
-        # calculate the region of the entire game
-        topRightX = cueRegion[0] + cueRegion[2] # left + width
-        topRightY = cueRegion[1] # top
-        region = {'top': topRightX - 1000, 'left': topRightY, 'width': 1000, 'height': 651}
-        return region
-
     def take_screenshot(self):
-        #take a screenshot of the game region and convert it to cv2 image
+        """take a screenshot of the game region and convert it to cv2 image"""
         sct_img = self.screen.grab(self.monitor)
         img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
         img = np.array(img)
@@ -50,7 +34,8 @@ class Vision:
         self.frame = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         return self.frame
 
-    def get_image(self, path): #utility function to be used in unittesting
+    def get_image(self, path):
+        """utility function to be used in unittesting"""
         return cv2.imread(path, 0)
 
     def bgr_to_rgb(self, img):
@@ -69,6 +54,7 @@ class Vision:
         return matches
 
     def find_template(self, template, image=None, threshold=0.9):
+        """utility function to find Matches"""
         if image is None:
             if self.frame is None:
                 self.take_screenshot()
