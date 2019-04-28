@@ -22,7 +22,7 @@ class Controller:
 	    self.leftClick(448 + 756, 329 + 136)
 
 	def click_raid(self):
-		self.leftClick(448 + 49, 329 + 407)
+		self.leftClick(492, 735)
 		log('Click Raid.')
 		time.sleep(1.5)
 

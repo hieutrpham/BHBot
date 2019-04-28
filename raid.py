@@ -22,27 +22,32 @@ class Raid:
         self.controller.click_potion()
         time.sleep(.5)
 
-        matches = self.vision.find_template('cueRIP')
+        #coordinates of 5 members where RIP tombstones would be
+        coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), ( 697, 688)]
+
+        for c in coordinates:
+            # hover over each member's position to detect RIP
+            pyautogui.moveTo(c[0],c[1],.5)
+            matches = self.vision.find_template('cueRIP')
+
+            if np.shape(matches)[1] >= 1:
+
+                x = matches[1][0] + 10
+                y = matches[0][0] + 10
+
+                self.controller.leftClick(x, y)
+                time.sleep(.5)
+                self.controller.click_revive()
+                time.sleep(.5)
+                self.controller.click_auto()
+                log('Revive successful.')
+
+            else:
+                log("Couldn't find dead member at this position.")
+
+        pyautogui.press('escape')
         time.sleep(.5)
-
-        if np.shape(matches)[1] >= 1:
-
-            x = matches[1][0] + 10
-            y = matches[0][0] + 10
-
-            self.controller.leftClick(x, y)
-            time.sleep(.5)
-            self.controller.click_revive()
-            time.sleep(.5)
-            self.controller.click_auto()
-            log('Revive successful.')
-
-        else:
-            log("Couldn't find dead member. Resume raiding.")
-            pyautogui.press('escape')
-            time.sleep(.5)
-            self.controller.click_auto()
-
+        self.controller.click_auto()
 
     def run(self):
         """game logic inluding autorevive and auto persuade fams using gold"""
