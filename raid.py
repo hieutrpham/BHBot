@@ -40,8 +40,6 @@ class Raid:
                 self.controller.leftClick(x, y)
                 time.sleep(.5)
                 self.controller.click_revive()
-                time.sleep(.5)
-                self.controller.click_auto()
                 log('Revive successful.')
 
             else:
