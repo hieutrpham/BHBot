@@ -19,7 +19,7 @@ class Raid:
 
     def revive(self):
         """revive character using medium potion"""
-        self.controller.click_potion() 
+        self.controller.click_potion()
         time.sleep(.5)
 
         #coordinates of 5 members where RIP tombstones would be
@@ -37,6 +37,7 @@ class Raid:
                 x = matches[1][0] + 10
                 y = matches[0][0] + 10
 
+                log('Click on tombstone')
                 self.controller.leftClick(x, y)
                 time.sleep(.5)
                 self.controller.click_revive()
