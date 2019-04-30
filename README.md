@@ -1,5 +1,10 @@
 A Bot that automates Raiding in a game call Bit Heroes.
 
+Inspiration from: 
+https://www.tautvidas.com/blog/2018/02/automating-basic-tasks-in-games-with-opencv-and-python/
+https://inventwithpython.com/blog/2014/12/17/programming-a-bot-to-play-the-sushi-go-round-flash-game/
+https://code.tutsplus.com/tutorials/how-to-build-a-python-bot-that-can-play-web-games--active-11117
+
 I couldn't get any of the bot on GitHub to work on my machine so I created one using Python. This is my first Python project. Through the process of researching, I learned a lot about classes in Python and computer vision using OpenCV. The bot detects objects in game using Template Matching (more info can be found on OpenCV website).
 
 The bot functions based on coordinates of certain objects in game. During the raid, it will take a screenshot every 2 seconds to detect:
