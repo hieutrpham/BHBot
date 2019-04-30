@@ -46,7 +46,6 @@ class Raid:
             else:
                 log("Couldn't find dead member at this position.")
 
-        pyautogui.press('escape')
         time.sleep(.5)
         self.controller.click_auto()
 
