@@ -23,7 +23,7 @@ class Raid:
         time.sleep(.5)
 
         #coordinates of 5 members where RIP tombstones would be
-        coordinates = ((829, 728), (764, 776), (636, 753), (565, 710), ( 697, 688))
+        coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), ( 697, 688)]
 
         for c in coordinates:
             # hover over each member's position to detect RIP
