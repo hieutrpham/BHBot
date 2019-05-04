@@ -31,18 +31,25 @@ class Raid:
             img = self.vision.take_screenshot()
             matches = self.vision.match_template(img, self.vision.templates['cueRIP'])
 
+            # if found tomestone, click on it
             if np.shape(matches)[1] >= 1:
                 log('Found a tombstone.')
-
                 x = matches[1][0] + 10
                 y = matches[0][0] + 10
-
-                log('Click on tombstone')
                 self.controller.leftClick(x, y)
-                time.sleep(.5)
-                self.controller.click_revive()
-                log('Revive successful.')
+                log('Click on tombstone')
+                time.sleep(1)
 
+                img2 = self.vision.take_screenshot()
+                matches2 = self.vision.match_template(img2, self.vision.templates['cueAveragePotion'])
+
+                # if found average potion, click on it. if not escape
+                if np.shape(matches2)[1] >= 1:
+                    self.controller.click_revive()
+                    log('Revive successful.')
+                else:
+                    log('No average potion found.')
+                    pyautogui.press('escape')
             else:
                 log("Couldn't find dead member at this position.")
 

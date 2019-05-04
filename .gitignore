@@ -1,2 +1,4 @@
 *.pyc
 
+test/test_vision.py
+test/testCodes.py

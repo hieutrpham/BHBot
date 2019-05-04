@@ -53,5 +53,4 @@ class Controller:
         log('Using medium potion to revive.')
         self.leftClick(448 + 508, 329 + 318)
         time.sleep(.5)
-        log("I'm sure I want this potion")
         pyautogui.press('space')

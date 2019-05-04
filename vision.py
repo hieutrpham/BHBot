@@ -14,7 +14,10 @@ class Vision:
             'cueAutoOff': os.getcwd() + r'\cues\cueAutoOff.png',
             'cueChat': os.getcwd() + r'\cues\cueChat.png',
             'cueFam': os.getcwd() + r'\cues\cueFam.png',
-            'cueRIP': os.getcwd() + r'\cues\cueRIP.png'
+            'cueRIP': os.getcwd() + r'\cues\cueRIP.png',
+            'cueAveragePotion': os.getcwd() + r'\cues\cueAveragePotion.png',
+            'cueMajorPotion': os.getcwd() + r'\cues\cueMajorPotion.png',
+            'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png'
            }
 
         self.templates = { k: cv2.imread(v, 0) for (k, v) in self.static_templates.items() }
@@ -65,6 +68,12 @@ class Vision:
             self.templates[template],
             threshold
         )
+
+    def detect_cue(self, template, threshold=0.9):
+        """take screenshot when this function is called and try to detect object specified"""
+        img = self.take_screenshot()
+        return self.match_template(img, self.templates[template], threshold)
+
 
     # series of functions to help detect objects in game
     def found_cueCleared(self):

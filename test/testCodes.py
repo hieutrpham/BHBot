@@ -30,8 +30,8 @@ def detect(filename, region):
         print('None')
 
 #def vision():
-img = cv2.imread('checkRIP1555854679.png', 0)
-template = cv2.imread(r'C:\Users\hieup\Documents\GitHub\BHBot\cues\cueRIP.png', 0)
+img = cv2.imread('checkFam1555872935.png', 0)
+template = cv2.imread(r'C:\Users\hieup\Documents\GitHub\BHBot\cues\cueMajorPotion.png', 0)
 w, h = template.shape[::-1]
 res = cv2.matchTemplate(img,template,cv2.TM_CCOEFF_NORMED)
 matches = np.where(res >= 0.9)
@@ -43,8 +43,10 @@ plt.subplot(121),plt.imshow(res,cmap = 'gray')
 plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
 plt.subplot(122),plt.imshow(img,cmap = 'gray')
 plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
-plt.show()
 print(np.shape(matches))
+print(min_val, max_val, min_loc, max_loc)
+plt.show()
+
 
 def main():
     pass
