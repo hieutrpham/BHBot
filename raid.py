@@ -28,9 +28,7 @@ class Raid:
         for c in coordinates:
             # hover over each member's position to detect RIP
             pyautogui.moveTo(c[0], c[1], .5)
-            img = self.vision.take_screenshot()
-            matches = self.vision.match_template(img, self.vision.templates['cueRIP'])
-
+            matches = self.vision.detect_cue('cueRIP')
             # if found tomestone, click on it
             if np.shape(matches)[1] >= 1:
                 log('Found a tombstone.')
@@ -40,17 +38,19 @@ class Raid:
                 log('Click on tombstone')
                 time.sleep(1)
 
-                img2 = self.vision.take_screenshot()
-                matches2 = self.vision.match_template(
-                    img2, self.vision.templates['cueAveragePotion'])
-
                 # if found average potion, click on it. if not escape
-                if np.shape(matches2)[1] >= 1:
+                if self.vision.detect_AveragePotion():
                     self.controller.click_revive()
                     log('Revive successful.')
+
+                elif self.vision.detect_uhoh():
+                    log('Unable to revive.')
+                    pyautogui.press('escape')
+
                 else:
                     log('No average potion found.')
                     pyautogui.press('escape')
+
             else:
                 log("Couldn't find dead member at this position.")
 

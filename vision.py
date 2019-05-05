@@ -18,7 +18,8 @@ class Vision:
             'cueRIP': os.getcwd() + r'\cues\cueRIP.png',
             'cueAveragePotion': os.getcwd() + r'\cues\cueAveragePotion.png',
             'cueMajorPotion': os.getcwd() + r'\cues\cueMajorPotion.png',
-            'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png'
+            'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png',
+            'cueUhoh': os.getcwd() + r'\cues\cueUhoh.png'
             }
 
         self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
@@ -70,6 +71,15 @@ class Vision:
         self.take_screenshot()
         img = self.frame
         return self.match_template(img, self.templates[template], threshold)
+
+# utility functions for autorevive
+    def detect_uhoh(self):
+        matches = self.detect_cue('cueUhoh')
+        return np.shape(matches)[1] >= 1
+
+    def detect_AveragePotion(self):
+        matches = self.detect_cue('cueAveragePotion')
+        return np.shape(matches)[1] >= 1
 
 # series of functions to help detect objects in game
     def found_cueCleared(self):
