@@ -19,7 +19,7 @@ class Vision:
             'cueAveragePotion': os.getcwd() + r'\cues\cueAveragePotion.png',
             'cueMajorPotion': os.getcwd() + r'\cues\cueMajorPotion.png',
             'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png'
-        }
+            }
 
         self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
 
@@ -68,7 +68,7 @@ class Vision:
             image,
             self.templates[template],
             threshold
-        )
+            )
 
     def detect_cue(self, template, threshold=0.9):
         """take screenshot when this function is called and try to detect object specified"""
