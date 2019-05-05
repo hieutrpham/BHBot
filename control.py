@@ -10,7 +10,6 @@ class Controller:
         pyautogui.click()
 
     def click_cleared(self):
-        log('Run is done')
         self.leftClick(448 + 335, 329 + 435)
 
     def click_persuade(self):
