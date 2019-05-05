@@ -63,16 +63,12 @@ class Vision:
             if self.frame is None:
                 self.take_screenshot()
             image = self.frame
-
-        return self.match_template(
-            image,
-            self.templates[template],
-            threshold
-            )
+        return self.match_template(image, self.templates[template], threshold)
 
     def detect_cue(self, template, threshold=0.9):
         """take screenshot when this function is called and try to detect object specified"""
-        img = self.take_screenshot()
+        self.take_screenshot()
+        img = self.frame
         return self.match_template(img, self.templates[template], threshold)
 
 # series of functions to help detect objects in game
