@@ -1,6 +1,7 @@
 A Bot that automates Raiding in a game call Bit Heroes.
 
-Inspiration from: 
+Inspiration from:
+
 https://www.tautvidas.com/blog/2018/02/automating-basic-tasks-in-games-with-opencv-and-python/
 https://inventwithpython.com/blog/2014/12/17/programming-a-bot-to-play-the-sushi-go-round-flash-game/
 https://code.tutsplus.com/tutorials/how-to-build-a-python-bot-that-can-play-web-games--active-11117
