@@ -1,8 +1,9 @@
-import cv2, pyautogui, os
+import cv2
+import os
 from PIL import Image
 import numpy as np
 from mss import mss
-from log import log
+
 
 class Vision:
 
@@ -18,9 +19,9 @@ class Vision:
             'cueAveragePotion': os.getcwd() + r'\cues\cueAveragePotion.png',
             'cueMajorPotion': os.getcwd() + r'\cues\cueMajorPotion.png',
             'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png'
-           }
+        }
 
-        self.templates = { k: cv2.imread(v, 0) for (k, v) in self.static_templates.items() }
+        self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
 
         self.monitor = {'top': 0, 'left': 0, 'width': 1920, 'height': 1080}
 
@@ -42,8 +43,8 @@ class Vision:
         return cv2.imread(path, 0)
 
     def bgr_to_rgb(self, img):
-        b,g,r = cv2.split(img)
-        return cv2.merge([r,g,b])
+        b, g, r = cv2.split(img)
+        return cv2.merge([r, g, b])
 
     def convert_rgb_to_bgr(self, img):
         return img[:, :, ::-1]
@@ -74,8 +75,7 @@ class Vision:
         img = self.take_screenshot()
         return self.match_template(img, self.templates[template], threshold)
 
-
-    # series of functions to help detect objects in game
+# series of functions to help detect objects in game
     def found_cueCleared(self):
         matches = self.find_template('cueCleared')
         return np.shape(matches)[1] >= 1

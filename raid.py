@@ -1,8 +1,7 @@
-from vision import Vision
-from control import Controller
 from log import log
 import numpy as np
-import time, pyautogui
+import time
+import pyautogui
 
 """
 All coordinates assume a screen resolution of 1920x1080, and Chrome
@@ -10,6 +9,7 @@ maximized with the Bookmarks Toolbar enabled.
 game_size = {"width": 1000, "height": 651}
 game must be in cinematic mode on kongregate website.
 """
+
 
 class Raid:
 
@@ -22,12 +22,12 @@ class Raid:
         self.controller.click_potion()
         time.sleep(.5)
 
-        #coordinates of 5 members where RIP tombstones would be
-        coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), ( 697, 688)]
+        # coordinates of 5 members where RIP tombstones would be
+        coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), (697, 688)]
 
         for c in coordinates:
             # hover over each member's position to detect RIP
-            pyautogui.moveTo(c[0],c[1],.5)
+            pyautogui.moveTo(c[0], c[1], .5)
             img = self.vision.take_screenshot()
             matches = self.vision.match_template(img, self.vision.templates['cueRIP'])
 
@@ -41,7 +41,8 @@ class Raid:
                 time.sleep(1)
 
                 img2 = self.vision.take_screenshot()
-                matches2 = self.vision.match_template(img2, self.vision.templates['cueAveragePotion'])
+                matches2 = self.vision.match_template(
+                    img2, self.vision.templates['cueAveragePotion'])
 
                 # if found average potion, click on it. if not escape
                 if np.shape(matches2)[1] >= 1:

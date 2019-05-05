@@ -1,6 +1,7 @@
-import pyautogui, time
-from vision import Vision
+import pyautogui
+import time
 from log import log
+
 
 class Controller:
 
