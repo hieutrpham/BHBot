@@ -38,7 +38,7 @@ class Raid:
                 log('Click on tombstone')
                 time.sleep(1)
 
-                # if found average potion, click on it. if not escape
+                # if function evaluates to True (found cue), click on it. if not escape
                 if self.vision.detect_AveragePotion():
                     self.controller.click_revive()
                     log('Revive successful.')

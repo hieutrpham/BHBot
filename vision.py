@@ -74,6 +74,7 @@ class Vision:
 
 # utility functions for autorevive
     def detect_uhoh(self):
+        """return True if found matches' shape greater than 1 (more than 1 matches), False if not"""
         matches = self.detect_cue('cueUhoh')
         return np.shape(matches)[1] >= 1
 
