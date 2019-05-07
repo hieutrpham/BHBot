@@ -22,40 +22,40 @@ class Raid:
         self.controller.click_potion()
         time.sleep(.5)
 
-        # coordinates of 5 members where RIP tombstones would be
-        coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), (697, 688)]
+        if self.vision.detect_uhoh():
+            log('Unable to revive.')
+            pyautogui.press('escape')
+            self.controller.click_auto()
+        
+        else:
+            # coordinates of 5 members where RIP tombstones would be
+            coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), (697, 688)]
+            for c in coordinates:
+                # hover over each member's position to detect RIP
+                pyautogui.moveTo(c[0], c[1], .5)
+                matches = self.vision.detect_cue('cueRIP')
+                # if found tomestone, click on it
+                if np.shape(matches)[1] >= 1:
+                    log('Found a tombstone.')
+                    x = matches[1][0] + 10
+                    y = matches[0][0] + 10
+                    self.controller.leftClick(x, y)
+                    log('Click on tombstone')
+                    time.sleep(1)
 
-        for c in coordinates:
-            # hover over each member's position to detect RIP
-            pyautogui.moveTo(c[0], c[1], .5)
-            matches = self.vision.detect_cue('cueRIP')
-            # if found tomestone, click on it
-            if np.shape(matches)[1] >= 1:
-                log('Found a tombstone.')
-                x = matches[1][0] + 10
-                y = matches[0][0] + 10
-                self.controller.leftClick(x, y)
-                log('Click on tombstone')
-                time.sleep(1)
-
-                # if function evaluates to True (found cue), click on it. if not escape
-                if self.vision.detect_AveragePotion():
-                    self.controller.click_revive()
-                    log('Revive successful.')
-
-                elif self.vision.detect_uhoh():
-                    log('Unable to revive.')
-                    pyautogui.press('escape')
+                    # if function evaluates to True (found cue), click on it. if not escape
+                    if self.vision.detect_AveragePotion():
+                        self.controller.click_revive()
+                        log('Revive successful.')
+                    else:
+                        log('No average potion found.')
+                        pyautogui.press('escape')
 
                 else:
-                    log('No average potion found.')
-                    pyautogui.press('escape')
+                    log(f"Couldn't find dead member at position {c}.")
 
-            else:
-                log("Couldn't find dead member at this position.")
-
-        time.sleep(.5)
-        self.controller.click_auto()
+            time.sleep(.5)
+            self.controller.click_auto()
 
     def run(self):
         """game logic inluding autorevive and auto persuade fams using gold"""
