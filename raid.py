@@ -25,6 +25,7 @@ class Raid:
         if self.vision.detect_uhoh():
             log('Unable to revive.')
             pyautogui.press('escape')
+            time.sleep(.5)
             self.controller.click_auto()
         
         else:
