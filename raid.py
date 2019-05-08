@@ -38,19 +38,19 @@ class Raid:
                 # if found tomestone, click on it
                 if np.shape(matches)[1] >= 1:
                     log('Found a tombstone.')
-                    x = matches[1][0] + 10
-                    y = matches[0][0] + 10
-                    self.controller.leftClick(x, y)
-                    log('Click on tombstone')
-                    time.sleep(1)
-
-                    # if function evaluates to True (found cue), click on it. if not escape
-                    if self.vision.detect_AveragePotion():
-                        self.controller.click_revive()
-                        log('Revive successful.')
-                    else:
-                        log('No average potion found.')
-                        pyautogui.press('escape')
+                    for i in range(np.shape(matches)[1]):
+                        x = matches[1][i] + 10
+                        y = matches[0][i] + 10
+                        self.controller.leftClick(x, y)
+                        log('Click on tombstone')
+                        time.sleep(1)
+                        # if function evaluates to True (found cue), click on it. if not escape
+                        if self.vision.detect_AveragePotion():
+                            self.controller.click_revive()
+                            log('Revive successful.')
+                        else:
+                            log('No average potion found.')
+                            pyautogui.press('escape')
 
                 else:
                     log(f"Couldn't find dead member at position {c}.")
