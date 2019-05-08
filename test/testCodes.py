@@ -4,8 +4,8 @@ import cv2
 from matplotlib import pyplot as plt
 
 
-img = cv2.imread('tomb.png', 0)
-template = cv2.imread(r'C:\Users\hieup\Documents\GitHub\BHBot\cues\cueRIP.png', 0)
+img = cv2.imread('uhoh.png', 0)
+template = cv2.imread(r'C:\Users\hieup\Documents\GitHub\BHBot\cues\cueUhoh.png', 0)
 w, h = template.shape[::-1]
 res = cv2.matchTemplate(img,template,cv2.TM_CCOEFF_NORMED)
 matches = np.where(res >= 0.9)

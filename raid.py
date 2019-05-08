@@ -20,11 +20,11 @@ class Raid:
     def revive(self):
         """revive character using medium potion"""
         self.controller.click_potion()
-        time.sleep(.5)
+        time.sleep(1)
 
         if self.vision.detect_uhoh():
-            log('Unable to revive.')
-            pyautogui.press('escape')
+            log('None of units needs consumables.')
+            pyautogui.press('space')
             time.sleep(.5)
             self.controller.click_auto()
         
@@ -50,7 +50,8 @@ class Raid:
                             log('Revive successful.')
                         else:
                             log('No average potion found.')
-                            pyautogui.press('escape')
+                            self.controller.click_auto()
+                            break
 
                 else:
                     log(f"Couldn't find dead member at position {c}.")

@@ -43,7 +43,7 @@ class Controller:
 
     def click_auto(self):
         log('Resuming auto.')
-        pyautogui.press('space')
+        self.leftClick(1432, 654)
 
     def click_potion(self):
         log('Click potion.')
