@@ -23,7 +23,7 @@ class Raid:
         time.sleep(1)
 
         if self.vision.detect_uhoh():
-            log('None of units needs consumables.')
+            log('None of your units needs consumables.')
             pyautogui.press('space')
             time.sleep(.5)
             self.controller.click_auto()
@@ -44,14 +44,12 @@ class Raid:
                         self.controller.leftClick(x, y)
                         log('Click on tombstone')
                         time.sleep(1)
-                        # if function evaluates to True (found cue), click on it. if not escape
                         if self.vision.detect_AveragePotion():
                             self.controller.click_revive()
                             log('Revive successful.')
                         else:
                             log('No average potion found.')
-                            self.controller.click_auto()
-                            break
+                            pyautogui.press('space')
 
                 else:
                     log(f"Couldn't find dead member at position {c}.")

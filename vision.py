@@ -98,7 +98,3 @@ class Vision:
     def found_cueAutoOff(self):
         matches = self.find_template('cueAutoOff')
         return np.shape(matches)[1] >= 1
-
-    def found_cueRIP(self):
-        matches = self.find_template('cueRIP')
-        return np.shape(matches)[1] >= 1
