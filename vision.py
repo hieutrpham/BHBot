@@ -53,6 +53,7 @@ class Vision:
     def match_template(self, img_grayscale, template, threshold=0.9):
         """
         Matches template image in a target grayscaled image
+        Return: array size (2, i) with i is number of matching positions
         """
         res = cv2.matchTemplate(img_grayscale, template, cv2.TM_CCOEFF_NORMED)
         matches = np.where(res >= threshold)
