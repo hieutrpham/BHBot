@@ -39,10 +39,10 @@ class Raid:
                 if np.shape(matches)[1] >= 1:
                     log('Found a tombstone.')
                     for i in range(np.shape(matches)[1]):
-                        x = matches[1][i] + 10
-                        y = matches[0][i] + 10
+                        x = matches[1][i] + 10 #2nd position of matches returns x coord
+                        y = matches[0][i] + 10 #1st position of matches returns y coord
                         self.controller.leftClick(x, y)
-                        log('Click on tombstone')
+                        log(f'Click on position {x, y}')
                         time.sleep(1)
                         if self.vision.detect_AveragePotion():
                             self.controller.click_revive()
@@ -58,12 +58,13 @@ class Raid:
             self.controller.click_auto()
 
     def run(self):
-        """game logic inluding autorevive and auto persuade fams using gold"""
+        """Main game loop"""
 
         self.controller.click_raid()
         self.controller.click_summon()
         self.controller.click_heroic()
         self.controller.click_accept()
+        log('Go.')
 
         while True:
             self.vision.take_screenshot()
@@ -80,6 +81,7 @@ class Raid:
                 self.controller.click_persuade()
 
             elif self.vision.found_cueChat():
+                log('A chat window is opened. Do not disturbed when grinding!')
                 self.controller.click_xchat()
 
             else:
