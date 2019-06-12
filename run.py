@@ -11,9 +11,10 @@ raid = Raid(vision, controller)
 
 def run():
     parser = argparse.ArgumentParser()
-    parser.add_argument('num_raid', type=int, default=1, help='Number of raids')
+    parser.add_argument('num_raid', type=int, default=1, help='Number of raids', nargs='?')
     args = parser.parse_args()    
-
+    
+    log(f'Total raids to run: {args.num_raid}')
     for i in range(args.num_raid):
         log(f'Start Raid {i+1}')
         raid.run()
