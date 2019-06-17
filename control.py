@@ -43,7 +43,7 @@ class Controller:
         self.leftClick(448 + 54, 329 + 517)
 
     def click_revive(self):
-        log('Using medium potion to revive.')
-        self.leftClick(448 + 508, 329 + 318)
+        log('Using minor revive potion.')
+        self.leftClick(730, 660)
         time.sleep(.5)
         pyautogui.press('space')
