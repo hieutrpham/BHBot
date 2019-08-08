@@ -27,6 +27,7 @@ class Controller:
         self.leftClick(448 + 335, 329 + 435)
 
     def click_persuade(self):
+        self.leftClick(954,644)
         pyautogui.press('space')
         time.sleep(.5)
         pyautogui.press('space')

@@ -30,7 +30,7 @@ class Raid:
         
         else:
             # coordinates of 5 members where RIP tombstones would be
-            coordinates = ["first":(829, 728), "second":(764, 776), "third":(636, 753), "fourth":(565, 710), "fifth":(697, 688)]
+            coordinates = {"first":(829, 728), "second":(764, 776), "third":(636, 753), "fourth":(565, 710), "fifth":(697, 688)}
             for k, v in coordinates.items():
                 # hover over each member's position to detect RIP
                 pyautogui.moveTo(v[0], v[1], .5)
