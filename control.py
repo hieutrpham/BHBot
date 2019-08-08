@@ -2,13 +2,19 @@ import pyautogui
 import time
 from log import log
 
+"""
+Resolution must be set at 1920 x 1080, scale set at 125% on windows machines
+"""
 
-# Coordinate constants that will be used in controller class 
-RAID = (496, 701)
-SUMMON = (1124, 761)
-HEROIC = (1183, 592)
-RAID_ACCEPT = (1097, 868)
-AUTO_BUTTON = (1432, 654)
+# Sometimes the y coordinate will be shifted from the original position. This delta is to adjust for that situation
+DELTA = 40
+
+# Coordinate constants that will be used in controller class
+RAID = (496, 701+DELTA)
+SUMMON = (1124, 761+DELTA)
+HEROIC = (1183, 592+DELTA)
+RAID_ACCEPT = (1097, 868+DELTA)
+AUTO_BUTTON = (1432, 654+DELTA)
 
 
 class Controller:

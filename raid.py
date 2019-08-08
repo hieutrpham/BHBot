@@ -7,7 +7,7 @@ import pyautogui
 All coordinates assume a screen resolution of 1920x1080, and Chrome
 maximized with the Bookmarks Toolbar enabled.
 game_size = {"width": 1000, "height": 651}
-game must be in cinematic mode on kongregate website.
+Game must be in cinematic mode on kongregate website.
 """
 
 
