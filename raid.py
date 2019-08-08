@@ -30,10 +30,10 @@ class Raid:
         
         else:
             # coordinates of 5 members where RIP tombstones would be
-            coordinates = [(829, 728), (764, 776), (636, 753), (565, 710), (697, 688)]
-            for c in coordinates:
+            coordinates = ["first":(829, 728), "second":(764, 776), "third":(636, 753), "fourth":(565, 710), "fifth":(697, 688)]
+            for k, v in coordinates.items():
                 # hover over each member's position to detect RIP
-                pyautogui.moveTo(c[0], c[1], .5)
+                pyautogui.moveTo(v[0], v[1], .5)
                 matches = self.vision.detect_cue('cueRIP')
                 # if found tomestone, click on it
                 if np.shape(matches)[1] >= 1:
@@ -52,7 +52,7 @@ class Raid:
                             pyautogui.press('space')
 
                 else:
-                    log(f"Couldn't find dead member at position {c}.")
+                    log(f"Couldn't find dead member at the {k} position.")
 
             time.sleep(.5)
             self.controller.click_auto()
