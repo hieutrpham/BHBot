@@ -10,16 +10,17 @@ class Vision:
     def __init__(self):
 
         self.static_templates = {
-            'cueCleared': os.getcwd() + r'\cues\cueCleared.png',
-            'region_check': os.getcwd() + r'\cues\cueRegion.png',
-            'cueAutoOff': os.getcwd() + r'\cues\cueAutoOff.png',
-            'cueChat': os.getcwd() + r'\cues\cueChat.png',
-            'cueFam': os.getcwd() + r'\cues\cueFam.png',
-            'cueRIP': os.getcwd() + r'\cues\cueRIP.png',
-            'cueAveragePotion': os.getcwd() + r'\cues\cueAveragePotion.png',
-            'cueMajorPotion': os.getcwd() + r'\cues\cueMajorPotion.png',
-            'cueMinorPotion': os.getcwd() + r'\cues\cueMinorPotion.png',
-            'cueUhoh': os.getcwd() + r'\cues\cueUhoh.png'
+            'cueCleared': r'cues\cueCleared.png',
+            'region_check': r'cues\cueRegion.png',
+            'cueAutoOff': r'cues\cueAutoOff.png',
+            'cueChat': r'cues\cueChat.png',
+            'cueFam': r'cues\cueFam.png',
+            'cueRIP': r'cues\cueRIP.png',
+            'cueRevivePotion': r'cues\cueRevivePotion.png',
+            'cueMajorPotion': r'cues\cueMajorPotion.png',
+            'cueMinorPotion': r'cues\cueMinorPotion.png',
+            'cueUhoh': r'cues\cueUhoh.png',
+            'cueHealthPotion': r'cues\cueHealthPotion.png'
             }
 
         self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
@@ -79,8 +80,12 @@ class Vision:
         matches = self.detect_cue('cueUhoh')
         return np.shape(matches)[1] >= 1
 
-    def detect_AveragePotion(self):
-        matches = self.detect_cue('cueAveragePotion')
+    def detect_RevivePotion(self):
+        matches = self.detect_cue('cueRevivePotion')
+        return np.shape(matches)[1] >= 1
+
+    def detect_HealthPotion(self):
+        matches = self.detect_cue('cueHealthPotion')
         return np.shape(matches)[1] >= 1
 
 # series of functions to help detect objects in game

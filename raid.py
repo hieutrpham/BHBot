@@ -44,7 +44,7 @@ class Raid:
                         self.controller.leftClick(x, y)
                         log(f'Click on position {x, y}')
                         time.sleep(1)
-                        if self.vision.detect_AveragePotion():
+                        if self.vision.detect_RevivePotion():
                             self.controller.click_revive()
                             log('Revive successful.')
                         else:
@@ -56,6 +56,37 @@ class Raid:
 
             time.sleep(.5)
             self.controller.click_auto()
+
+    def revive_revised(self):
+        """revive character using medium potion"""
+        self.controller.click_potion()
+        time.sleep(1)
+
+        if self.vision.detect_uhoh():
+            log('None of your heroes needs pots.')
+            pyautogui.press('space')
+            time.sleep(.5)
+            self.controller.click_auto()
+        
+        else:
+            # coordinates of 5 members where RIP tombstones would be
+            coordinates = {"first":(829, 728), "second":(764, 776), "third":(636, 753), "fourth":(565, 710), "fifth":(697, 688)}
+            for k, v in coordinates.items():
+                try:
+                    log(f'Attempt to revive the {k} hero')
+                    self.controller.leftClick(v[0], v[1])
+                    time.sleep(.5)
+                    if self.vision.detect_RevivePotion():
+                        log(f'Hero at the {k} position needs pots ')
+                        self.controller.click_revive()
+                    elif self.vision.detect_HealthPotion(): #code here that detect health potion
+                        pyautogui.press('escape')
+                        continue
+                    else: continue
+                except Exception as e: log(f'Encounter some error: {e}')     
+                
+            self.controller.click_auto()     
+
 
     def run(self):
         """Main game loop"""
