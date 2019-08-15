@@ -70,16 +70,18 @@ class Raid:
         
         else:
             # coordinates of 5 members where RIP tombstones would be
-            coordinates = {"first":(829, 728), "second":(764, 776), "third":(636, 753), "fourth":(565, 710), "fifth":(697, 688)}
+            coordinates = {"1st":(829, 728), "2nd":(764, 776), "3rd":(697, 688), "4th":(636, 753), "5th":(565, 710)}
             for k, v in coordinates.items():
                 try:
                     log(f'Attempt to revive the {k} hero')
                     self.controller.leftClick(v[0], v[1])
                     time.sleep(.5)
                     if self.vision.detect_RevivePotion():
-                        log(f'Hero at the {k} position needs pots ')
+                        log(f'Hero at the {k} position is dead')
                         self.controller.click_revive()
+                        log(f'Revive successful')
                     elif self.vision.detect_HealthPotion(): #code here that detect health potion
+                        log(f'Hero at the {k} position only needs heal')
                         pyautogui.press('escape')
                         continue
                     else: continue
@@ -105,7 +107,7 @@ class Raid:
 
             elif self.vision.found_cueAutoOff():
                 log('Someone dies. Attempt to revive.')
-                self.revive()
+                self.revive_revised()
 
             elif self.vision.found_cueFam():
                 log('A familiar thinks you are cool. Attempt to persuade.')
