@@ -17,6 +17,7 @@ class Raid:
         self.vision = vision
         self.controller = controller
 
+    # deprecated
     def revive(self):
         """revive character using medium potion"""
         self.controller.click_potion()
@@ -76,15 +77,16 @@ class Raid:
                     log(f'Attempt to revive the {k} hero')
                     self.controller.leftClick(v[0], v[1])
                     time.sleep(.5)
+                    
                     if self.vision.detect_RevivePotion():
                         log(f'Hero at the {k} position is dead')
                         self.controller.click_revive()
                         log(f'Revive successful')
+                        
                     elif self.vision.detect_HealthPotion(): #code here that detect health potion
                         log(f'Hero at the {k} position only needs heal')
                         pyautogui.press('escape')
-                        continue
-                    else: continue
+
                 except Exception as e: log(f'Encounter some error: {e}')     
                 
             self.controller.click_auto()     
