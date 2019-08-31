@@ -12,6 +12,7 @@ DELTA = 40
 # Coordinate constants that will be used in controller class
 RAID = (496, 701+DELTA)
 SUMMON = (1124, 761+DELTA)
+HARD = (1000, 592+DELTA)
 HEROIC = (1183, 592+DELTA)
 RAID_ACCEPT = (1097, 868+DELTA)
 AUTO_BUTTON = (1432, 654+DELTA)
@@ -44,7 +45,13 @@ class Controller:
         time.sleep(1.5)
 
     def click_heroic(self):
+        log('Choose Heroic Raid')
         self.leftClick(HEROIC[0], HEROIC[1])
+        time.sleep(1.5)
+
+    def click_hard(self):
+        log('Choose Hard Raid')
+        self.leftClick(HARD[0], HARD[1])
         time.sleep(1.5)
 
     def click_accept(self):
