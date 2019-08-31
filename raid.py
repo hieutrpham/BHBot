@@ -108,9 +108,9 @@ class Raid:
                 time.sleep(1)
                 break
 
-            # elif self.vision.found_cueAutoOff():
-            #     log('Someone dies. Attempt to revive.')
-            #     self.revive_revised()
+            elif self.vision.found_cueAutoOff():
+                log('Someone dies. Attempt to revive.')
+                self.revive_revised()
 
             elif self.vision.found_cueFam():
                 log('A familiar thinks you are cool. Attempt to persuade.')

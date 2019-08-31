@@ -12,7 +12,7 @@ class Vision:
         self.static_templates = {
             'cueCleared': r'cues\cueCleared.png',
             'region_check': r'cues\cueRegion.png',
-            'cueAutoOff': r'cues\cueAutoOff.png',
+            'cueAutoOff': r'cues\autoOff.png',
             'cueChat': r'cues\cueChat.png',
             'cueFam': r'cues\cueFam.png',
             'cueRIP': r'cues\cueRIP.png',
@@ -20,7 +20,8 @@ class Vision:
             'cueMajorPotion': r'cues\cueMajorPotion.png',
             'cueMinorPotion': r'cues\cueMinorPotion.png',
             'cueUhoh': r'cues\cueUhoh.png',
-            'cueHealthPotion': r'cues\cueHealthPotion.png'
+            'cueHealthPotion': r'cues\cueHealthPotion.png',
+            'cueSwitch': r'cues\cueSwitch.png'
             }
 
         self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
