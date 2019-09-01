@@ -61,7 +61,7 @@ class Raid:
     def revive_revised(self):
         """revive character using medium potion"""
         self.controller.click_potion()
-        time.sleep(1)
+        time.sleep(.5)
 
         if self.vision.detect_uhoh():
             log('None of your heroes needs pots.')
@@ -75,6 +75,7 @@ class Raid:
             for k, v in coordinates.items():
                 try:
                     log(f'Attempt to revive the {k} hero')
+                    time.sleep(.5)
                     self.controller.leftClick(v[0], v[1])
                     time.sleep(.5)
                     
@@ -110,6 +111,7 @@ class Raid:
 
             elif self.vision.found_cueAutoOff():
                 log('Someone dies. Attempt to revive.')
+                time.sleep(1)
                 self.revive_revised()
 
             elif self.vision.found_cueFam():
@@ -119,6 +121,11 @@ class Raid:
             elif self.vision.found_cueChat():
                 log('A chat window is opened. Do not disturbed when grinding!')
                 self.controller.click_xchat()
+
+            elif self.vision.found_cueDefeat():
+                log('You are defeated!!!')
+                pyautogui.press('escape')
+                break
 
             else:
                 time.sleep(2)

@@ -21,7 +21,8 @@ class Vision:
             'cueMinorPotion': r'cues\cueMinorPotion.png',
             'cueUhoh': r'cues\cueUhoh.png',
             'cueHealthPotion': r'cues\cueHealthPotion.png',
-            'cueSwitch': r'cues\cueSwitch.png'
+            'cueSwitch': r'cues\cueSwitch.png',
+            'cueDefeat': r'cues\cueDefeat.png'
             }
 
         self.templates = {k: cv2.imread(v, 0) for (k, v) in self.static_templates.items()}
@@ -104,4 +105,8 @@ class Vision:
 
     def found_cueAutoOff(self):
         matches = self.find_template('cueAutoOff')
+        return np.shape(matches)[1] >= 1
+
+    def found_cueDefeat(self):
+        matches = self.find_template('cueDefeat')
         return np.shape(matches)[1] >= 1
