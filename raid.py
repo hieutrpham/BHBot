@@ -73,22 +73,30 @@ class Raid:
             # coordinates of 5 members where RIP tombstones would be
             coordinates = {"1st":(829, 728), "2nd":(764, 776), "3rd":(697, 688), "4th":(636, 753), "5th":(565, 710)}
             for k, v in coordinates.items():
-                try:
-                    log(f'Attempt to revive the {k} hero')
-                    time.sleep(.5)
-                    self.controller.leftClick(v[0], v[1])
-                    time.sleep(.5)
+                log(f'Attempt to revive the {k} hero')
+                time.sleep(.5)
+                self.controller.leftClick(v[0], v[1])
+                time.sleep(.5)
+                
+                if self.vision.detect_RevivePotion():
+                    log(f'Hero at the {k} position is dead')
+                    self.controller.rev_major()
+                    log(f'Revive successful')
                     
-                    if self.vision.detect_RevivePotion():
-                        log(f'Hero at the {k} position is dead')
-                        self.controller.rev_major()
-                        log(f'Revive successful')
-                        
-                    elif self.vision.detect_HealthPotion(): #code here that detect health potion
-                        log(f'Hero at the {k} position only needs heal')
-                        pyautogui.press('escape')
+                    self.controller.click_potion()
+                    time.sleep(.5)
 
-                except Exception as e: log(f'Encounter some error: {e}')     
+                    if self.vision.detect_uhoh():
+                        log('None of your heroes needs pots.')
+                        pyautogui.press('space')
+                        time.sleep(.5)
+                        break
+                    else:
+                        continue
+                    
+                elif self.vision.detect_HealthPotion(): #code here that detect health potion
+                    log(f'Hero at the {k} position only needs heal')
+                    pyautogui.press('escape')
                 
             self.controller.click_auto()     
 
