@@ -124,7 +124,7 @@ class Raid:
 
             elif self.vision.found_cueDefeat():
                 log('You are defeated!!!')
-                pyautogui.press('escape')
+                pyautogui.press('space')
                 break
 
             else:
