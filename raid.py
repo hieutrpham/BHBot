@@ -81,7 +81,7 @@ class Raid:
                     
                     if self.vision.detect_RevivePotion():
                         log(f'Hero at the {k} position is dead')
-                        self.controller.revive_pot()
+                        self.controller.rev_major()
                         log(f'Revive successful')
                         
                     elif self.vision.detect_HealthPotion(): #code here that detect health potion

@@ -67,8 +67,17 @@ class Controller:
     def click_potion(self):
         self.leftClick(448 + 54, 329 + 517)
 
-    def revive_pot(self):
-        log('Using minor revive potion.')
-        self.leftClick(MAJOR_REVIVE[0], MAJOR_REVIVE[1])
+    def revive_pot(self, potion_pos, potion_type):
+        log(f'Using {potion_type} revive potion.')
+        self.leftClick(potion_pos[0], potion_pos[1])
         time.sleep(.5)
         pyautogui.press('space')
+    
+    def rev_minor(self):
+        self.revive_pot(MINOR_REVIVE, 'minor')
+
+    def rev_average(self):
+        self.revive_pot(AVE_REVIVE, 'average')
+
+    def rev_major(self):
+        self.revive_pot(MAJOR_REVIVE, 'major')
