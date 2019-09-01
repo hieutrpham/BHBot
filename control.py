@@ -16,6 +16,9 @@ HARD = (1000, 592+DELTA)
 HEROIC = (1183, 592+DELTA)
 RAID_ACCEPT = (1097, 868+DELTA)
 AUTO_BUTTON = (1432, 654+DELTA)
+MINOR_REVIVE = (730, 660)
+AVE_REVIVE = (965, 660)
+MAJOR_REVIVE = (1175, 660)
 
 
 class Controller:
@@ -64,8 +67,8 @@ class Controller:
     def click_potion(self):
         self.leftClick(448 + 54, 329 + 517)
 
-    def click_revive(self):
+    def revive_pot(self):
         log('Using minor revive potion.')
-        self.leftClick(730, 660)
+        self.leftClick(MAJOR_REVIVE[0], MAJOR_REVIVE[1])
         time.sleep(.5)
         pyautogui.press('space')
