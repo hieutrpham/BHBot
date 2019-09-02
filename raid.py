@@ -80,7 +80,7 @@ class Raid:
                 
                 if self.vision.detect_RevivePotion():
                     log(f'Hero at the {k} position is dead')
-                    self.controller.rev_major() # option to use major, minor, average revive potion
+                    self.controller.rev_minor() # option to use major, minor, average revive potion
                     log(f'Revive successful')
                     
                     self.controller.click_potion()
