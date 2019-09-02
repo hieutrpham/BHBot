@@ -80,7 +80,7 @@ class Raid:
                 
                 if self.vision.detect_RevivePotion():
                     log(f'Hero at the {k} position is dead')
-                    self.controller.rev_major()
+                    self.controller.rev_major() # option to use major, minor, average revive potion
                     log(f'Revive successful')
                     
                     self.controller.click_potion()
@@ -94,7 +94,7 @@ class Raid:
                     else:
                         continue
                     
-                elif self.vision.detect_HealthPotion(): #code here that detect health potion
+                elif self.vision.detect_HealthPotion():
                     log(f'Hero at the {k} position only needs heal')
                     pyautogui.press('escape')
                 
@@ -131,7 +131,7 @@ class Raid:
                 self.controller.click_xchat()
 
             elif self.vision.found_cueDefeat():
-                log('You are defeated!!!')
+                log('You have been defeated!!!')
                 pyautogui.press('space')
                 break
 
