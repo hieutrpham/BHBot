@@ -110,6 +110,8 @@ class Raid:
         self.controller.click_accept()
         log('Go.')
 
+        defeat_num = 0
+        
         while True:
             self.vision.take_screenshot()
             if self.vision.found_cueCleared():
@@ -118,9 +120,17 @@ class Raid:
                 break
 
             elif self.vision.found_cueAutoOff():
-                log('Someone dies. Attempt to revive.')
-                time.sleep(1)
-                self.revive_revised()
+                if self.vision.found_cueDefeat():
+                    log('You have been defeated!!!')
+                    defeat_num = 1
+                    pyautogui.press('space')
+                    time.sleep(2)
+                    break
+                    
+                else:
+                    log('Someone dies. Attempt to revive.')
+                    time.sleep(1)
+                    self.revive_revised()
 
             elif self.vision.found_cueFam():
                 log('A familiar thinks you are cool. Attempt to persuade.')
@@ -129,11 +139,14 @@ class Raid:
             elif self.vision.found_cueChat():
                 log('A chat window is opened. Do not disturbed when grinding!')
                 self.controller.click_xchat()
-
+            
             elif self.vision.found_cueDefeat():
                 log('You have been defeated!!!')
                 pyautogui.press('space')
+                time.sleep(2)
                 break
-
+                
             else:
                 time.sleep(2)
+
+        return defeat_num

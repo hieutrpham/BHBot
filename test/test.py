@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 # use this to test if cv2 could detect cues on a given screenshot
 
 img = cv2.imread(r'testdefeat.png', 0) # screenshot 
-template = cv2.imread(r"..\cues\cueDefeat.png", 0) # cue to match with the screenshot
+template = cv2.imread(r"..\cues\cueDefeat2.png", 0) # cue to match with the screenshot
 w, h = template.shape[::-1]
 res = cv2.matchTemplate(img,template,cv2.TM_CCOEFF_NORMED)
 matches = np.where(res >= 0.9)

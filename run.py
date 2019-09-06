@@ -15,10 +15,18 @@ def run():
     args = parser.parse_args()    
     
     log(f'Total raids to run: {args.num_raid}')
+
+    defeat_num = 0
+
     for i in range(args.num_raid):
         log(f'Start Raid {i+1}')
-        raid.run()
+        x = raid.run()
+        if x == 1:
+            defeat_num += 1
         log(f'Raid {i+1} is done')
+
+    log(f'Success rate: {(args.num_raid - defeat_num)/args.num_raid * 100}%')
+    log(f'Total defeat: {defeat_num} out of {args.num_raid} runs)
 
 if __name__ == '__main__':
     run()
