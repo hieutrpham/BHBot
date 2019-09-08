@@ -64,7 +64,7 @@ class Raid:
         time.sleep(.5)
 
         if self.vision.detect_uhoh():
-            log('None of your heroes needs pots.')
+            # log('None of your heroes needs pots.')
             pyautogui.press('space')
             time.sleep(.5)
             self.controller.click_auto()
@@ -81,13 +81,13 @@ class Raid:
                 if self.vision.detect_RevivePotion():
                     log(f'Hero at the {k} position is dead')
                     self.controller.rev_minor() # option to use major, minor, average revive potion
-                    log(f'Revive successful')
+                    # log(f'Revive successful')
                     
                     self.controller.click_potion()
                     time.sleep(.5)
 
                     if self.vision.detect_uhoh():
-                        log('None of your heroes needs pots.')
+                        # log('None of your heroes needs pots.')
                         pyautogui.press('space')
                         time.sleep(.5)
                         break

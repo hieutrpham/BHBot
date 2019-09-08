@@ -25,8 +25,8 @@ def run():
             defeat_num += 1
         log(f'Raid {i+1} is done')
 
-    log(f'Success rate: {(args.num_raid - defeat_num)/args.num_raid * 100}%')
-    log(f'Total defeat: {defeat_num} out of {args.num_raid} runs)
+    print(f'Success rate: {(args.num_raid - defeat_num)/args.num_raid * 100}%')
+    print(f'Total defeat: {defeat_num} out of {args.num_raid} runs')
 
 if __name__ == '__main__':
     run()

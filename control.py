@@ -7,18 +7,20 @@ Resolution must be set at 1920 x 1080, scale set at 125% on windows machines
 """
 
 # Sometimes the y coordinate will be shifted from the original position. This delta is to adjust for that situation
-DELTA = 40
+DELTA_Y = 40
+DELTA_X = 0
 
 # Coordinate constants that will be used in controller class
-RAID = (496, 701+DELTA)
-SUMMON = (1124, 761+DELTA)
-HARD = (1000, 592+DELTA)
-HEROIC = (1183, 592+DELTA)
-RAID_ACCEPT = (1097, 868+DELTA)
-AUTO_BUTTON = (1432, 654+DELTA)
+RAID = (496-DELTA_X, 701+DELTA_Y)
+SUMMON = (1124-DELTA_X, 761+DELTA_Y)
+HARD = (1000-DELTA_X, 592+DELTA_Y)
+HEROIC = (1183-DELTA_X, 592+DELTA_Y)
+RAID_ACCEPT = (1097-DELTA_X, 868+DELTA_Y)
+AUTO_BUTTON = (1432-DELTA_X, 654+DELTA_Y)
 MINOR_REVIVE = (730, 660)
 AVE_REVIVE = (965, 660)
 MAJOR_REVIVE = (1175, 660)
+POTION = (502-DELTA_X, 846)
 
 
 class Controller:
@@ -65,7 +67,7 @@ class Controller:
         self.leftClick(AUTO_BUTTON[0], AUTO_BUTTON[1])
 
     def click_potion(self):
-        self.leftClick(448 + 54, 329 + 517)
+        self.leftClick(POTION[0], POTION[1])
 
     def revive_pot(self, potion_pos, potion_type):
         log(f'Using {potion_type} revive potion.')
